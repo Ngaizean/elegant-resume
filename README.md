@@ -177,16 +177,6 @@ make distclean  # 清理所有生成文件，包括 PDF
 xelatex elegant-resume.tex
 ```
 
-## 开源注意事项
-
-如果你基于本模板维护自己的简历仓库，建议不要提交：
-
-- 个人照片
-- 个人简历数据文件
-- 生成的 PDF
-- LaTeX 编译产物，例如 `.aux`、`.log`、`.fls`、`.fdb_latexmk`、`.xdv`
-- 授权不明确的字体文件
-
 ## 致谢
 
 - 基于 [billryan/resume](https://github.com/billryan/resume) 模板改进。
