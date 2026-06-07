@@ -1,0 +1,71 @@
+% Anonymous example data file for template/resume-template.tex.
+% Copy this file, replace every placeholder, then set:
+% \newcommand{\ResumeDataFile}{template/your-data-file}
+% \input{template/resume-template}
+
+\newcommand{\ResumeName}{张三}
+\newcommand{\ResumePhone}{13800000000}
+\newcommand{\ResumeEmail}{example@example.com}
+\newcommand{\ResumeAge}{20岁}
+\newcommand{\ResumeWebsite}{https://example.com}
+\newcommand{\ResumeTitle}{某高校学生 / 研究人员}
+\newcommand{\ResumePhoto}{images/example-profile.png}
+
+\newcommand{\RenderResumeHeader}{%
+  \resumeHeader
+    {\ResumeName}
+    {\ResumePhone}
+    {\ResumeEmail}
+    {\ResumeAge}
+    {\ResumeWebsite}
+    {\ResumeTitle}
+    {\ResumePhoto}
+}
+
+\newcommand{\RenderEducationSection}{%
+  \section{教育背景}
+  \educationEntry{某某大学}{计算机科学与技术}{硕士}{2024.9 - 2027.6}
+  \educationItemGap
+  \educationEntry{某某大学}{软件工程}{本科}{2020.9 - 2024.6}
+  \begin{itemize}
+    \item \textbf{成绩}: 平均分 90.0 / 100，专业排名前 10\%
+    \item \textbf{荣誉}: 校级奖学金；学科竞赛奖项；优秀学生干部
+  \end{itemize}
+}
+
+\newcommand{\RenderResearchSection}{%
+  \section{科研经历}
+  \researchEntry{面向某类系统的高效计算优化研究}{某某实验室}{2024.1 - 至今}
+  \begin{itemize}
+    \researchTech{高性能计算、系统优化、并行计算、实验评测}
+    \researchOutcomeFirst{完成相关论文投稿 / 发表，负责方法设计、实验实现与结果分析。}
+    \researchWorkFirst{围绕目标系统中的计算瓶颈与资源利用问题，研究任务划分、数据流转、执行调度与性能稳定性之间的关系。}
+    \researchWorkItem{建立系统化分析框架，从执行路径、缓存复用、并行度提升和资源约束四个方向评估优化策略的适用边界。}
+    \researchWorkItem{构建真实负载驱动的实验验证链路，系统评估吞吐、延迟、资源占用和稳定性等指标。}
+  \end{itemize}
+}
+
+\newcommand{\RenderProjectSection}{%
+  \section{项目经历}
+  \projectEntry{高性能计算系统原型实现}{https://example.com/project}
+  \begin{itemize}
+    \item 面向具体计算场景实现核心算法模块，优化数据访问路径、并行执行策略和端到端运行效率。
+    \item 构建自动化测试与性能评测流程，完成多组输入规模下的正确性验证和性能对比。
+  \end{itemize}
+}
+
+\newcommand{\RenderSkillsSection}{%
+  \section{工作技能}
+  \begin{itemize}
+    \item \textbf{语言}: 英语 CET-6 / IELTS / TOEFL
+    \item \textbf{工具与框架}: C / C++，Python，CUDA，Linux，Git
+  \end{itemize}
+}
+
+\newcommand{\RenderResume}{%
+  \RenderResumeHeader
+  \RenderEducationSection
+  \RenderResearchSection
+  \RenderProjectSection
+  \RenderSkillsSection
+}

@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{zh_CN-systemfonts}[2026/06/07 System CJK font configuration]
+
+\RequirePackage{fontspec}
+\RequirePackage{xeCJK}
+
+\defaultfontfeatures{Mapping=tex-text}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont[BoldFont=Noto Sans CJK SC]{Noto Serif CJK SC}
+}{
+  \IfFontExistsTF{Source Han Serif SC}{
+    \setCJKmainfont[BoldFont=Source Han Sans SC]{Source Han Serif SC}
+  }{
+    \IfFontExistsTF{Songti SC}{
+      \setCJKmainfont[BoldFont=Heiti SC, ItalicFont=Kaiti SC]{Songti SC}
+    }{
+      \IfFontExistsTF{STSong}{
+        \setCJKmainfont[BoldFont=STHeiti]{STSong}
+      }{
+        \setCJKmainfont{STHeiti}
+      }
+    }
+  }
+}
+
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{
+  \IfFontExistsTF{Source Han Sans SC}{
+    \setCJKsansfont{Source Han Sans SC}
+  }{
+    \IfFontExistsTF{Heiti SC}{
+      \setCJKsansfont{Heiti SC}
+    }{
+      \setCJKsansfont{STHeiti}
+    }
+  }
+}
+
+\IfFontExistsTF{Noto Sans Mono CJK SC}{
+  \setCJKmonofont{Noto Sans Mono CJK SC}
+}{
+  \IfFontExistsTF{PingFang SC}{
+    \setCJKmonofont{PingFang SC}
+  }{
+    \setCJKmonofont{STHeiti}
+  }
+}
+
+\IfFontExistsTF{Songti SC}{\setCJKfamilyfont{zhsong}{Songti SC}}{\setCJKfamilyfont{zhsong}{STSong}}
+\IfFontExistsTF{Heiti SC}{\setCJKfamilyfont{zhhei}{Heiti SC}}{\setCJKfamilyfont{zhhei}{STHeiti}}
+\IfFontExistsTF{Kaiti SC}{\setCJKfamilyfont{zhkai}{Kaiti SC}}{\setCJKfamilyfont{zhkai}{STHeiti}}
+
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+
+\endinput
