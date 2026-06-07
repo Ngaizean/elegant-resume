@@ -4,6 +4,10 @@
 
 模板不一定覆盖所有使用场景，你可以自行修改，或配合 AI 按自己的内容和审美继续定制。
 
+## 预览
+
+![Elegant Resume 模板预览](images/preview.png)
+
 ## 特性
 
 - 基于 XeLaTeX，原生支持中文排版。
@@ -11,8 +15,9 @@
 - 教育背景、科研经历、项目经历等条目自动对齐。
 - 科研经历支持自动编号的工作描述 `(1)(2)(3)`。
 - 头像可选，文件不存在时自动隐藏。
-- 支持匿名示例数据，适合作为公开模板项目。
+- 内置匿名示例数据与匿名头像占位图，适合作为公开模板项目。
 - 支持 Makefile 和构建脚本。
+- 不捆绑授权不明确的 CJK 字体，默认使用系统中文字体。
 
 ## 快速开始
 
@@ -22,10 +27,10 @@
 - XeLaTeX
 - latexmk
 
-### 编译当前简历
+### 编译模板示例
 
 ```bash
-latexmk -xelatex resume-zh_CN.tex
+latexmk -xelatex elegant-resume.tex
 ```
 
 或：
@@ -37,19 +42,12 @@ make
 输出文件：
 
 ```text
-resume-zh_CN.pdf
+elegant-resume.pdf
 ```
 
-### 编译匿名模板示例
+也可以使用构建脚本：
 
 ```bash
-latexmk -xelatex -outdir=template/build template/resume-template.tex
-```
-
-或：
-
-```bash
-cd template
 ./build.sh
 ```
 
@@ -57,21 +55,21 @@ cd template
 
 ```text
 .
-├── resume-zh_CN.tex                  # 当前简历入口，加载个人数据文件
-├── resume.cls                        # 核心样式与命令定义
+├── elegant-resume.tex                 # 默认入口，加载匿名示例数据
+├── resume.cls                         # 核心样式与命令定义
+├── zh_CN-systemfonts.sty              # 系统中文字体配置
+├── data/
+│   └── resume-data.example.tex        # 匿名示例数据
 ├── template/
-│   ├── resume-template.tex           # 通用模板骨架
-│   ├── resume-data.example.tex       # 匿名示例数据
-│   ├── resume-data-yizhen.tex        # 个人内容文件，本地使用，不建议公开
-│   ├── build.sh                      # 模板构建脚本
-│   └── README.md                     # 模板目录说明
+│   └── resume-template.tex            # 通用模板骨架
 ├── images/
-│   ├── example-profile.png           # 匿名头像占位图
-│   └── profile.jpg                   # 个人照片，本地使用，不建议公开
-├── fonts/                            # 字体资源
-├── linespacing_fix.sty               # 行间距修复
-├── fontawesome.sty                   # 图标字体支持
-├── Makefile                          # 编译脚本
+│   ├── example-profile.png            # 匿名头像占位图
+│   └── preview.png                    # 模板编译效果预览
+├── fonts/                             # 英文字体与图标字体
+├── linespacing_fix.sty                # 行间距修复
+├── fontawesome.sty                    # 图标字体支持
+├── Makefile                           # 编译脚本
+├── build.sh                           # 构建脚本
 └── LICENSE
 ```
 
@@ -80,13 +78,13 @@ cd template
 复制匿名示例数据：
 
 ```bash
-cp template/resume-data.example.tex template/resume-data.my.tex
+cp data/resume-data.example.tex data/resume-data.my.tex
 ```
 
 创建新的入口文件，例如 `resume-my.tex`：
 
 ```tex
-\newcommand{\ResumeDataFile}{template/resume-data.my}
+\newcommand{\ResumeDataFile}{data/resume-data.my}
 \input{template/resume-template}
 ```
 
@@ -98,10 +96,10 @@ latexmk -xelatex resume-my.tex
 
 ## 维护方式
 
-- 改简历内容：编辑 `template/resume-data-*.tex`
+- 改简历内容：编辑 `data/resume-data-*.tex`
 - 改模板结构：编辑 `template/resume-template.tex`
 - 改视觉样式：编辑 `resume.cls`
-- 改字体配置：编辑对应 `.sty` 文件
+- 改字体配置：编辑 `zh_CN-systemfonts.sty`
 
 ## 命令参考
 
@@ -154,10 +152,21 @@ latexmk -xelatex resume-my.tex
 \end{itemize}
 ```
 
+## 字体说明
+
+本项目不捆绑授权不明确的中文字体。`zh_CN-systemfonts.sty` 会优先尝试使用常见系统字体，例如：
+
+- Noto Serif CJK SC / Noto Sans CJK SC
+- Source Han Serif SC / Source Han Sans SC
+- Songti SC / Heiti SC / Kaiti SC
+- STSong / STHeiti
+
+如果编译时报中文字体缺失，请安装上述任意一组字体，或自行修改 `zh_CN-systemfonts.sty`。
+
 ## 编译命令
 
 ```bash
-make            # 编译默认简历
+make            # 编译默认示例
 make clean      # 清理辅助文件，保留 PDF
 make distclean  # 清理所有生成文件，包括 PDF
 ```
@@ -165,8 +174,18 @@ make distclean  # 清理所有生成文件，包括 PDF
 也可以手动编译：
 
 ```bash
-xelatex resume-zh_CN.tex
+xelatex elegant-resume.tex
 ```
+
+## 开源注意事项
+
+如果你基于本模板维护自己的简历仓库，建议不要提交：
+
+- 个人照片
+- 个人简历数据文件
+- 生成的 PDF
+- LaTeX 编译产物，例如 `.aux`、`.log`、`.fls`、`.fdb_latexmk`、`.xdv`
+- 授权不明确的字体文件
 
 ## 致谢
 
