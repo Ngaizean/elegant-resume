@@ -1,4 +1,4 @@
-# Elegant Resume / 优雅简历
+# Elegant Resume
 
 一个简洁、优雅、模块化的中文学术/技术简历 LaTeX 模板，适用于保研、申博、科研经历展示、技术求职等场景。
 
@@ -167,16 +167,6 @@ make distclean  # 清理所有生成文件，包括 PDF
 ```bash
 xelatex resume-zh_CN.tex
 ```
-
-## 开源注意事项
-
-如果你要公开自己的模板仓库，建议不要提交：
-
-- 个人照片
-- 个人简历数据文件
-- 生成的 PDF
-- LaTeX 编译产物，例如 `.aux`、`.log`、`.fls`、`.fdb_latexmk`、`.xdv`
-- 授权不明确的字体文件
 
 ## 致谢
 
